@@ -201,25 +201,25 @@ function cargarSprites() {
     frameWidth: 1024, frameHeight: 1024, spacing: 2, margin: 0,
   });
 
-  this.load.image("torres", "assets/texturas/fondo/torres.JPG");
-  this.load.image("bosque", "assets/texturas/fondo/bosque.PNG");
-  this.load.image("roca", "assets/texturas/bomberos/bombero1.PNG");
-  this.load.image("ventana", "assets/texturas/elementos/ventana.PNG");
-  this.load.image("escaleras", "assets/texturas/elementos/escaleras.PNG");
-  this.load.image("boca", "assets/texturas/bomberos/boca.PNG");
-  this.load.image("camion", "assets/texturas/elementos/camion.PNG");
-  this.load.image("puerta", "assets/texturas/elementos/puerta.PNG");
-  this.load.image("gota", "assets/texturas/elementos/gota.PNG");
-  this.load.image("torso", "assets/texturas/bomberos/torso.PNG");
-  this.load.image("piernas", "assets/texturas/bomberos/piernas.PNG");
-  this.load.image("cabeza", "assets/texturas/bomberos/cabeza.PNG");
-  this.load.image("pasto", "assets/texturas/elementos/pasto.PNG");
-  this.load.image("arbol", "assets/texturas/elementos/arbol.PNG");
+  this.load.image("torres", "assets/texturas/fondo/torres.jpg");
+  this.load.image("bosque", "assets/texturas/fondo/bosque.png");
+  this.load.image("roca", "assets/texturas/bomberos/bombero1.png");
+  this.load.image("ventana", "assets/texturas/elementos/ventana.png");
+  this.load.image("escaleras", "assets/texturas/elementos/escaleras.png");
+  this.load.image("boca", "assets/texturas/bomberos/boca.png");
+  this.load.image("camion", "assets/texturas/elementos/camion.png");
+  this.load.image("puerta", "assets/texturas/elementos/puerta.png");
+  this.load.image("gota", "assets/texturas/elementos/gota.png");
+  this.load.image("torso", "assets/texturas/bomberos/torso.png");
+  this.load.image("piernas", "assets/texturas/bomberos/piernas.png");
+  this.load.image("cabeza", "assets/texturas/bomberos/cabeza.png");
+  this.load.image("pasto", "assets/texturas/elementos/pasto.png");
+  this.load.image("arbol", "assets/texturas/elementos/arbol.png");
   this.load.image("city", "assets/texturas/elementos/city.jpg");
-  this.load.image("cannon", "assets/texturas/elementos/cannon.PNG");
-  this.load.image("watercannon", "assets/texturas/elementos/watercanon.PNG");
-  this.load.image("fazbear", "assets/texturas/elementos/fazbear.PNG");
-  this.load.image("bloque", "assets/texturas/elementos/bloque.PNG");
+  this.load.image("cannon", "assets/texturas/elementos/cannon.png");
+  this.load.image("watercannon", "assets/texturas/elementos/watercanon.png");
+  this.load.image("fazbear", "assets/texturas/elementos/fazbear.png");
+  this.load.image("bloque", "assets/texturas/elementos/bloque.png");
 }
 
 function crearAnimaciones() {
