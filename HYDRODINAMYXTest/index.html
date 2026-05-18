@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="phaser.js"></script>
+  <script src="game.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <title>bomeritospara</title>
+</head>
+
+<body>
+  <div id="pantalla">
+    <img class="image" id="poster" src="assets/texturas/icons/poster.jpg" width="250" height="550">
+    <div id="game"></div>
+    <img class="image" id="escudo" src="assets/texturas/icons/escudo.PNG" width="350" height="350">
+  </div>
+  
+  <img id="btnMusica" src="assets/texturas/icons/musicno.png" width="50">
+
+  <footer id="footer-controles">
+    <p>Controles:</p>
+    <img src="assets/texturas/icons/space.png" width="100" height="100">
+    <img src="assets/texturas/icons/flechas.png" width="100" height="100">
+    <div class="bloque-control">
+      <span id="presionTexto">300 kPa</span>
+      <input type="range" id="presionSlider" min="50" max="200" value="300">
+    </div>
+
+    <div id="controles-caso3">
+      <div id="contenedorModos">
+        <label>
+          <input type="radio" name="modoFisica" value="presion" checked> Presión Constante
+        </label>
+        <label>
+          <input type="radio" name="modoFisica" value="caudal"> Caudal Constante
+        </label>
+      </div>
+
+      <div class="bloque-control">
+        <span id="caudalTexto">Caudal: 50 L/s</span>
+        <input type="range" id="caudalSlider" min="10" max="300" value="50" disabled>
+      </div>
+    </div>
+
+  </footer>
+
+</body>
+
+</html>
