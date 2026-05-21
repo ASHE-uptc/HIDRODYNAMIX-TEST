@@ -121,11 +121,11 @@ function create() {
   // Escuchador Slider Presión
   if (sliderPresion && textoPresion) {
     // Sincronizar valor inicial
-    presion = Number(sliderPresion.value) * 2000;
+    presion = Number(sliderPresion.value) * 1000;
     textoPresion.innerText = "Presión: "+sliderPresion.value + " kPa";
 
     sliderPresion.addEventListener("input", (e) => {
-      presion = Number(e.target.value) * 2000;
+      presion = Number(e.target.value) * 1000;
       textoPresion.innerText = "Presión: "+e.target.value + " kPa";
     });
   }
@@ -495,7 +495,7 @@ function dispararAgua2() {
   if (textoVelocidad) textoVelocidad.setText("Velocidad: " + velocidadReal.toFixed(2) + " m/s");
 
   let rad = Phaser.Math.DegToRad(angulo);
-  let factorPhaser = 25; 
+  let factorPhaser = 35.2; 
   let vx = Math.cos(rad) * velocidadReal * factorPhaser;
   let vy = Math.sin(rad) * velocidadReal * factorPhaser;
 
