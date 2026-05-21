@@ -1,6 +1,9 @@
 // =====================================
 // VARIABLES GLOBALES DECLARADAS
 // =====================================
+let regla;
+let reglah;
+let textoAltura;
 let textoDistancia;
 let textoVelocidad;
 let textoCaudal;
@@ -220,6 +223,8 @@ function cargarSprites() {
   this.load.image("watercannon", "assets/texturas/elementos/watercanon.png");
   this.load.image("fazbear", "assets/texturas/elementos/fazbear.png");
   this.load.image("bloque", "assets/texturas/elementos/bloque.png");
+  this.load.image("regla","assets/texturas/elementos/regla.jpg");
+  this.load.image("reglah","assets/texturas/elementos/reglah.jpg");
 }
 
 function crearAnimaciones() {
@@ -249,6 +254,8 @@ function crearMapa() {
   edificio = this.add.rectangle(700, 300, 300, 500, 0x555555);
   puerta = this.add.image(600, 485, "puerta").setScale(0.3);
   camion = this.add.image(180, 475, "camion").setScale(0.82).setDepth(2);
+  regla =this.add.image();
+  reglah=this.add.image();
   crearVentanas.call(this);
   crearFuegos.call(this);
 }
@@ -350,16 +357,14 @@ function crearFuegogif2(x, y) {
   return f;
 }
 
-// Controla la visibilidad de los elementos del footer correspondientes al caudal
+// Controla la visibilidad de los elementos de caudal en la interfaz HTML
+// Controla la visibilidad de todas las herramientas avanzadas del Caso 3
 function mostrarControlCaudal(visible) {
-  const sliderCaudal = document.getElementById("caudalSlider");
-  const textoCaudalHTML = document.getElementById("caudalTexto");
-  const radiosFisica = document.getElementsByClassName("radio-container"); // Si tus radios están envueltos en una clase, o puedes manejarlos directamente
-
-  const displayValue = visible ? "inline-block" : "none";
-
-  if (sliderCaudal) sliderCaudal.style.display = displayValue;
-  if (textoCaudalHTML) textoCaudalHTML.style.display = displayValue;
+  const bloqueCaso3 = document.getElementById("controles-caso3");
+  if (bloqueCaso3) {
+    // Si es visible usamos "block" (o el diseño que tengas), si no, "none"
+    bloqueCaso3.style.display = visible ? "flex" : "none";
+  }
 }
 
 function crearInput() {
@@ -371,6 +376,20 @@ function moverJugador() {
   if (cursors.up.isDown) jugador.y -= 4;
   if (cursors.down.isDown) jugador.y += 4;
   jugador.y = Phaser.Math.Clamp(jugador.y, 220, 380);
+
+  // --- CÁLCULO DE ALTURA COHERENTE ---
+  // El punto más bajo del jugador es Y = 380 (esto será 0 metros en el suelo)
+  // El punto más alto es Y = 220 (representará una altura máxima de, por ejemplo, 8.0 metros)
+  let alturaMaximaMetros = 8.0;
+  let rangoPixeles = 380 - 220; // 160 píxeles de recorrido
+  
+  // Mapeamos los píxeles de Phaser a metros (a menor Y, mayor altura)
+  let alturaReal = ((380 - jugador.y) / rangoPixeles) * alturaMaximaMetros;
+
+  // Actualizamos el texto en pantalla con un decimal
+  if (textoAltura) {
+    textoAltura.setText("Altura: " + alturaReal.toFixed(1) + " m");
+  }
 }
 
 function moverJugador2() {
@@ -548,6 +567,7 @@ function apagarFuego(ag, fuego) {
 }
 
 function iniciarCaso1() {
+  
   crearMapa.call(this);
   crearJugador.call(this);
   crearSpringtrap.call(this);
@@ -556,6 +576,11 @@ function iniciarCaso1() {
   textoVelocidad = this.add.text(20, 60, "Velocidad: 0 m/s", {
     fontSize: "24px", fill: "#ffffff", backgroundColor: "#000000", padding: { x: 10, y: 5 }
   });
+
+  textoAltura = this.add.text(320, 60, "Altura: 0.0 m", {
+    fontSize: "24px", fill: "#ffffff", backgroundColor: "#000000", padding: { x: 10, y: 5 }
+  });
+  crearReglaArrastrable.call(this);
 }
 
 function iniciarCaso2() {
@@ -593,6 +618,23 @@ function iniciarCaso3() {
 
   textoCaudal = this.add.text(20, 150, "Caudal: 0.0 L/s", {
     fontSize: "24px", fill: "#ffffff", backgroundColor: "#000000", padding: { x: 10, y: 5 }
+  });
+}
+
+function crearReglaArrastrable() {
+  // 1. Creamos la imagen en la posición X: 400, Y: 500 (ajústalo si quieres)
+  // Asegúrate de haber hecho un: this.load.image("regla", "assets/...") en cargarSprites()
+  regla = this.add.image(20, 250, "regla").setScale(0.2).setDepth(5);
+  reglah = this.add.image(50, 350, "reglah").setScale(0.21).setDepth(5)
+  
+  // 2. La hacemos interactiva y le decimos directamente que es arrastrable
+  regla.setInteractive({ draggable: true });
+  reglah.setInteractive({ draggable: true });
+  // 3. Configuramos el evento de arrastre de Phaser
+  this.input.on('drag', function (pointer, gameObject, dragX, dragY) {
+    // Usamos dragX y dragY para que el movimiento sea súper suave
+    gameObject.x = dragX;
+    gameObject.y = dragY;
   });
 }
 
