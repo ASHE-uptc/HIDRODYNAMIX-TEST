@@ -483,7 +483,7 @@ function dispararAgua() {
 
   if (textoVelocidad) textoVelocidad.setText("Velocidad: " + velocidadReal.toFixed(2) + " m/s");
 
-  let factorPhaser = 15; 
+  let factorPhaser = 20; 
   ag.setVelocityX(velocidadReal * factorPhaser);
   ag.setVelocityY(-velocidadReal * (factorPhaser * 0.6));
 }
@@ -495,7 +495,7 @@ function dispararAgua2() {
   if (textoVelocidad) textoVelocidad.setText("Velocidad: " + velocidadReal.toFixed(2) + " m/s");
 
   let rad = Phaser.Math.DegToRad(angulo);
-  let factorPhaser = 35.2; 
+  let factorPhaser = 37; 
   let vx = Math.cos(rad) * velocidadReal * factorPhaser;
   let vy = Math.sin(rad) * velocidadReal * factorPhaser;
 
